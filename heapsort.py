@@ -13,14 +13,14 @@ class Heap:
 		
 		if newLeaf > 0:
 			parentIndex	= (newLeaf - 1) / 2
-			parentValue = self.collection[parentIndex]
+			parentValue	= self.collection[parentIndex]
 			
 			while self.comparator(parentValue, objectToPush):
 				self.collection[parentIndex]	= objectToPush
-				self.collection[newLeaf]		= parentValue
-				newLeaf							= parentIndex
-				parentIndex						= (newLeaf - 1) / 2
-				parentValue						= self.collection[parentIndex]
+				self.collection[newLeaf]	= parentValue
+				newLeaf				= parentIndex
+				parentIndex			= (newLeaf - 1) / 2
+				parentValue			= self.collection[parentIndex]
 				
 				if parentIndex < 0:
 					break
@@ -35,7 +35,7 @@ class Heap:
 		if len(self.collection) == 1:
 			self.collection = []
 		else:
-			lastLeaf			= self.collection.pop()
+			lastLeaf		= self.collection.pop()
 			self.collection[0]	= lastLeaf
 			
 			if len(self.collection) > 2:
@@ -43,8 +43,8 @@ class Heap:
 				leftChild	= 1
 				rightChild	= 2
 				swapCheck	= (lambda left, right: 
-									(left < len(self.collection) and self.comparator(lastLeaf, self.collection[left])) or 
-									(right < len(self.collection) and self.comparator(lastLeaf, self.collection[right])))
+							(left < len(self.collection) and self.comparator(lastLeaf, self.collection[left])) or 
+							(right < len(self.collection) and self.comparator(lastLeaf, self.collection[right])))
 				
 				#chose which branch to swap with
 				while swapCheck(leftChild, rightChild):
@@ -62,9 +62,9 @@ class Heap:
 						
 					self.collection[swapIndex]	= lastLeaf
 					self.collection[current]	= swapValue
-					current						= swapIndex
-					rightChild					= 2 + (current * 2)
-					leftChild					= 1 + (current * 2)
+					current				= swapIndex
+					rightChild			= 2 + (current * 2)
+					leftChild			= 1 + (current * 2)
 					
 					if len(self.collection) <= leftChild:
 						break
